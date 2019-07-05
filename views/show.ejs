@@ -1,7 +1,7 @@
 <% include partials/header1 %>
 <title><%=tour.name%></title>
 <% include partials/header2 %>
-<div class="container">
+<div class="container tour-show-container">
   <div class="my-5">
     <div class="row">
           <div class="info col-md-4 p-0">
@@ -15,6 +15,10 @@
             <h5 class="card-title">9.99$</h5>
           </div>
           <p class="card-text"><%= tour.description %></p>
+          <%if (authorized === true) {%>
+          <a href="/campgrounds/<%=tour._id%>/edit" class="btn btn-sm btn-warning px-4 py-2 my-3">ویرایش</a>
+          <% } %>
+          <p class="small-text"><em>ثبت شده توسط <span class="mine-text-primary ml-1"><%=tour.author.username%></span></em></p>
         </div>
       </div>
     </div>

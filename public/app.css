@@ -56,6 +56,10 @@ body {
   color: var(--text-light-color);
 }
 
+.small-text {
+  font-size: 14px;
+}
+
 .search {
   font-family: FontAwesome;
   font-style: normal;
@@ -186,6 +190,15 @@ hr {
 }
 
 /* show section */
+
+.tour-show-container img {
+  max-height: 60vh;
+}
+
+.blog-show-container img {
+  max-height: 60vh;
+  width: 100%;
+}
 
 @media only screen and (max-width: 768px) {
   .header-text {
