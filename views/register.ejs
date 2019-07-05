@@ -1,0 +1,35 @@
+<% include partials/header1 %>
+<title>ثبت نام</title>
+<% include partials/header2 %>
+<%if (alreadyLoggedIn === true) { %>
+<div class="container text-center form-container">
+<h4 class="h-4 my-5 mine-text-secondary">برای ساخت اکانت جدید ابتدا از اکانت فعلی خارج شوید</h4>
+</div>
+<% } else{ %>
+<%if (adminError === true) {%>
+<div class="alert alert-danger" role="alert">
+  شما نمی توانید از نام کاربری admin  استفاده کنید.
+</div>
+<% } %>
+<%if (usernameTakenError === true) { %>
+<div class="alert alert-danger" role="alert">
+  این نام کاربری قبلا ثبت شده است
+</div>
+<% } %>
+<div class="container text-center form-container">
+<h1 class="my-5 mine-text-secondary">ثبت نام کاربر جدید</h1>
+<div class="form-content">
+<form action="/signup" method="POST">
+  <div class="form-group">
+    <input type="text" class="form-control text-center" name="username" placeholder="نام کاربری">
+  </div>
+    <div class="form-group">
+    <input type="password" class="form-control text-center" name="password" placeholder="گذرواژه">
+  </div>
+  <button class="btn mine-bg-primary text-light px-5 my-2">ثبت</button>
+</form>
+<p class="text-left">حساب کاربری دارید؟ <a href="/login">ورود</a></p>
+</div>
+</div>
+<% } %>
+<%include partials/footer%>

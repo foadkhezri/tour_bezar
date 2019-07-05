@@ -1,0 +1,13 @@
+<% include partials/header1 %>
+<title><%=blog.title%></title>
+<% include partials/header2 %>
+<div class="container text-center show-container">
+<h1 class="my-5 mine-text-secondary"><%=blog.title%></h1>
+
+<img src="<%=blog.image%>" class="img-fluid rounded">
+
+<p class="my-5 post-body mine-text-secondary"><%= blog.body %></p>
+
+</div>
+
+<% include partials/footer %>

@@ -1,0 +1,39 @@
+<% include partials/header1 %>
+<title>بلاگ</title>
+<% include partials/header2 %>
+
+<header class="jumbotron mine-bg-secondary text-light">
+<div class="jumbotron-content">
+    <h1>بلاگ</h1>
+        <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2 search my-3" type="search" placeholder="جستجوی پست ها            &#xF002" aria-label="Search">
+    </form>
+    </div>
+    <div class="bg"></div>
+ </header>
+ <div class="container">
+      <div class="row mt-3">
+        <div class="col-lg-12">
+          <h3 class="mine-text-secondary">جدیدترین پست ها</h3>
+        </div>
+      </div>
+<div class="container">
+<div class="row my-5" id="blog-container">
+<% blogs.forEach(function(blog){%>
+<div class="card col-lg-12 d-flex flex-row align-items-center text-light mine-bg-secondary" id="blog-card">
+  <img class="card-img-top" src="<%=blog.image%>" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title"><%=blog.title%></h5>
+    <p class="mine-text-light d-inline"><%=blog.author%>|</p>
+    <p class="mine-text-light d-inline"><%=blog.created.toDateString();%></p>
+    <p class="card-text mt-2" id="blog-card-text">
+      <%let str = String(blog.body).substring(0,100) + "...";%>
+      <%=str%>
+    </p>
+    <a href="/blog/<%=blog._id%>" class="btn mine-bg-primary text-light">بیشتر بخوانید</a>
+  </div>
+</div>
+  <% }); %>
+  </div>
+  </div>
+<% include partials/footer %>

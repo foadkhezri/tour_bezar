@@ -1,0 +1,73 @@
+<% include partials/header1 %>
+<title><%=tour.name%></title>
+<% include partials/header2 %>
+<div class="container">
+  <div class="my-5">
+    <div class="row">
+          <div class="info col-md-4 p-0">
+      <h1>نقشه</h1>
+      </div>
+      <div class="card col-md-8 p-0">
+        <img src="<%=tour.image%>" class="card-img-top" alt="tour image" />
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h5 class="card-title"><%=tour.name%></h5>
+            <h5 class="card-title">9.99$</h5>
+          </div>
+          <p class="card-text"><%= tour.description %></p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    <div class="comments rounded col-lg-12 mine-bg-light my-5 py-5 px-5">
+    <h3 class="text-left mb-5">نظرات</h3>
+    <% tour.comments.forEach(function(comment){%>
+    <div class="comment d-flex justify-content-between align-items-center mt-4 border-top p-2">
+    <p><strong><%= comment.author %></strong> - <%= comment.text %></p>
+    <p>2 سال پیش</p>
+    </div>
+    <%}) %>
+    <%if (currentUser !== undefined) { %>
+        <form
+      class="mt-5 text-center"
+      action="/campgrounds/<%=tour._id%>/comments"
+      method="POST"
+    >
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control text-center"
+          name="author"
+          value="<%=currentUser.username%>"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <textarea
+          class="form-control text-center"
+          rows="5"
+          name="text"
+          placeholder="متن کامنت"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn mine-bg-primary text-light px-5 my-2">
+        ثبت
+      </button>
+    </form>
+<% } else{ %>
+        <form
+      class="mt-5 text-center"
+      action="/campgrounds/<%=tour._id%>/comments"
+      method="POST"
+    >
+    <p>برای ثبت نظر ابتدا باید وارد وبسایت شوید <a href="/login">ورود</a></p>
+    </form>
+    <% } %>
+
+    </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/footer %>

@@ -1,0 +1,25 @@
+<% include partials/header1 %>
+<title>ورود</title>
+<% include partials/header2 %>
+<%if (alreadyLoggedIn === true) { %>
+<div class="container text-center form-container">
+<h1 class="my-5 mine-text-secondary">وارد سیستم شده اید.</h1>
+</div>
+<% } else{ %>
+<div class="container text-center form-container">
+<h1 class="my-5 mine-text-secondary">ورود</h1>
+<div class="form-content">
+<form action="/login" method="POST">
+  <div class="form-group">
+    <input type="text" class="form-control text-center" name="username" placeholder="نام کاربری">
+  </div>
+    <div class="form-group">
+    <input type="password" class="form-control text-center" name="password" placeholder="گذرواژه">
+  </div>
+  <button class="btn mine-bg-primary text-light px-5 my-2">ثبت</button>
+</form>
+<p class="text-left">حساب کاربری ندارید؟ <a href="/signup">ثبت نام</a></p>
+</div>
+</div>
+<% } %>
+<%include partials/footer%>
