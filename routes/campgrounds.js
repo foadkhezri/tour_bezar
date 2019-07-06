@@ -3,13 +3,15 @@ let router = express.Router();
 let Tour = require("../models/tours");
 
 router.get("/campgrounds", function(req, res) {
-  Tour.find({}, function(err, tours) {
-    if (err) {
-      console.log("error occured");
-    } else {
-      res.render("tours", { campgrounds: tours });
-    }
-  });
+  Tour.find({})
+    .sort({ created: "desc" })
+    .exec(function(err, tours) {
+      if (err) {
+        console.log("error occured");
+      } else {
+        res.render("tours", { campgrounds: tours });
+      }
+    });
 });
 // creating new tours
 router.post("/campgrounds", isLoggedIn, function(req, res) {
@@ -70,8 +72,6 @@ router.get("/campgrounds/:id/edit", function(req, res) {
         if (foundTour.author.id.equals(req.user._id)) {
           res.render("edittour", { tour: foundTour });
         } else {
-          console.log(foundTour.author.id);
-          console.log(req.user._id);
           res.render("forbidden");
         }
       }

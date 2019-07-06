@@ -3,13 +3,15 @@ let router = express.Router();
 let Blog = require("../models/blogs");
 
 router.get("/blog", function(req, res) {
-  Blog.find({}, function(err, blogs) {
-    if (err) {
-      console.log("error occured");
-    } else {
-      res.render("blog", { blogs: blogs });
-    }
-  });
+  Blog.find({})
+    .sort({ created: "desc" })
+    .exec(function(err, blogs) {
+      if (err) {
+        console.log("error occured");
+      } else {
+        res.render("blog", { blogs: blogs });
+      }
+    });
 });
 
 router.post("/blog", function(req, res) {

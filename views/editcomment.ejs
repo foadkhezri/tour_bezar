@@ -1,0 +1,16 @@
+<% include partials/header1 %>
+<title>ویرایش کامنت</title>
+<% include partials/header2 %>
+<div class="container text-center form-container">
+<h1 class="my-5 mine-text-secondary">ویرایش کامنت</h1>
+<form action="/campgrounds/<%=tour_id%>/comments/<%=comment._id%>?_method=PUT" method="POST">
+    <div class="form-group">
+    <textarea class="form-control text-center" rows="5"  name="comment[text]"><%=comment.text%></textarea>
+  </div>
+  <button type="submit" class="btn mine-bg-primary text-light px-5 my-2">ثبت</button>
+</form>
+<form action="/campgrounds/<%=tour_id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+  <button type="submit" class="btn btn-danger text-light px-5 my-2">حذف کامنت</button>
+</form>
+</div>
+<%include partials/footer%>
