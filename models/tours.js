@@ -20,4 +20,5 @@ let tourSchema = new mongoose.Schema({
   created: { type: Date, default: Date.now }
 });
 
+tourSchema.index({ "$**": "text" });
 module.exports = mongoose.model("Tour", tourSchema);

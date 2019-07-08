@@ -60,13 +60,6 @@ body {
   font-size: 14px;
 }
 
-.search {
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-}
-
 .navbar-brand {
   font-size: 1.5rem;
 }

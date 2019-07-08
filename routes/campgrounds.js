@@ -5,11 +5,11 @@ let Tour = require("../models/tours");
 router.get("/campgrounds", function(req, res) {
   Tour.find({})
     .sort({ created: "desc" })
-    .exec(function(err, tours) {
+    .exec(function(err, foundTours) {
       if (err) {
         console.log("error occured");
       } else {
-        res.render("tours", { campgrounds: tours });
+        res.render("tours", { campgrounds: foundTours });
       }
     });
 });
@@ -122,6 +122,21 @@ router.delete("/campgrounds/:id", function(req, res) {
   } else {
     res.redirect("/login");
   }
+});
+
+// search tour route
+
+router.get("/campgrounds/search/:id", function(req, res) {
+  Tour.find({ $text: { $search: req.params.id } }, function(err, foundTours) {
+    if (err) {
+      console.log("error occured");
+    } else {
+      res.render("tours", {
+        campgrounds: foundTours,
+        searchInput: req.params.id
+      });
+    }
+  });
 });
 
 function isLoggedIn(req, res, next) {

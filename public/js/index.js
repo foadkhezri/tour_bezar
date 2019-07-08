@@ -25,3 +25,22 @@ for (index = 0; index < inputs.length; ++index) {
     this.setCustomValidity("");
   };
 }
+// search logic
+
+let searchInput = document.querySelector(".search-input");
+searchInput.addEventListener("keypress", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    window.location.replace("/campgrounds/search/" + searchInput.value);
+  }
+});
+
+// alerts
+
+window.setTimeout(function() {
+  $(".alert")
+    .fadeTo(500, 0)
+    .slideUp(500, function() {
+      $(this).remove();
+    });
+}, 4000);

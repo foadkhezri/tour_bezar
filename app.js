@@ -51,6 +51,7 @@ app.use(function(req, res, next) {
   res.locals.errorMessage = String(req.flash("error")[0]);
   res.locals.successMessage = String(req.flash("success")[0]);
   res.locals.usernameTakenError = false;
+  res.locals.searchInput = "undefined";
   res.locals.alreadyLoggedIn = false;
   next();
 });
