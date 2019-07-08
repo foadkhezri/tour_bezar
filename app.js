@@ -1,13 +1,13 @@
 // ==========================================================
 // import packages
 const express = require("express"),
-  app = express(),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override"),
   mongoose = require("mongoose"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
   passportLocalMongoose = require("passport-local-mongoose"),
+  flash = require("connect-flash"),
   User = require("./models/user"),
   commentRoutes = require("./routes/comments"),
   campgroundRoutes = require("./routes/campgrounds"),
@@ -24,10 +24,12 @@ mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 // app configuration
+app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(flash());
 // passport configuration
 app.use(
   require("express-session")({
@@ -46,6 +48,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
   res.locals.adminError = false;
+  res.locals.errorMessage = String(req.flash("error")[0]);
+  res.locals.successMessage = String(req.flash("success")[0]);
   res.locals.usernameTakenError = false;
   res.locals.alreadyLoggedIn = false;
   next();

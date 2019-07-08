@@ -5,13 +5,13 @@
 <h1 class="my-5 mine-text-secondary">ویرایش : <%= tour.name %></h1>
 <form action="/campgrounds/<%=tour._id%>?_method=PUT" method="POST">
   <div class="form-group">
-    <input type="text" class="form-control text-center" name="name" value="<%= tour.name%>">
+    <input type="text" class="form-control text-center" name="name" value="<%= tour.name%>" required>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control text-center" name="tourimage" value="<%=tour.image%>">
+    <input type="text" class="form-control text-center" name="tourimage" value="<%=tour.image%>" required>
   </div>
     <div class="form-group">
-    <textarea class="form-control text-center" rows="5"  name="tourdesc"><%=tour.description%></textarea>
+    <textarea class="form-control text-center" rows="5"  name="tourdesc" required><%=tour.description%></textarea>
   </div>
   <button type="submit" class="btn mine-bg-primary text-light px-5 my-2">ثبت</button>
 </form>

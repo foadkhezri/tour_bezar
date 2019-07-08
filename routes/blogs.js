@@ -94,8 +94,13 @@ router.delete("/blog/:id", function(req, res) {
 function adminIsLoggedIn(req, res, next) {
   if (req.isAuthenticated() && req.user.username == "admin") {
     return next();
+  } else {
+    if (req.isAuthenticated() && req.user.username !== "admin") {
+      res.render("forbidden");
+    } else {
+      res.redirect("/login");
+    }
   }
-  res.render("forbidden");
 }
 
 module.exports = router;

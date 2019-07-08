@@ -1,6 +1,11 @@
 <% include partials/header1 %>
 <title>تور ها</title>
 <% include partials/header2 %>
+<%if (successMessage !== "undefined") { %>
+<div class="alert alert-success" role="alert">
+  <%=successMessage%>
+</div>
+<% } %>
 <header class="jumbotron mine-bg-secondary text-light">
 <div class="jumbotron-content">
     <h1>تور ها</h1>

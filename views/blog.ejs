@@ -5,9 +5,18 @@
 <header class="jumbotron mine-bg-secondary text-light">
 <div class="jumbotron-content">
     <h1>بلاگ</h1>
+        <p>مشاهده آخرین پست های منتشر شده</p>
         <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2 search my-3" type="search" placeholder="جستجوی پست ها            &#xF002" aria-label="Search">
     </form>
+        <hr>
+           <%if (currentUser !== undefined) {%>   
+            <%if (currentUser.username === "admin") {%>
+        <p class="text-right">
+        <a class="btn mine-bg-primary text-light my-3 shadow" href="/blog/new">ثبت پست جدید <i class="fas fa-plus"></i></a>    
+    </p>
+      <% } %>
+  <% } %>
     </div>
     <div class="bg"></div>
  </header>
@@ -30,7 +39,14 @@
       <%let str = String(blog.body).substring(0,100) + "...";%>
       <%=str%>
     </p>
+    <div class="d-flex justify-content-between align-items-center">
     <a href="/blog/<%=blog._id%>" class="btn mine-bg-primary text-light">بیشتر بخوانید</a>
+   <%if (currentUser !== undefined) {%>   
+   <%if (currentUser.username === "admin") {%>
+   <a href="/blog/<%=blog._id%>/edit" class="btn btn-sm btn-warning">ویرایش</a>
+  <% } %>
+  <% } %>
+  </div>
   </div>
 </div>
   <% }); %>

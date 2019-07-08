@@ -6,16 +6,16 @@
 <div class="form-content">
 <form action="/blog" method="POST">
   <div class="form-group">
-    <input type="text" class="form-control text-center" name="title" placeholder="موضوغ پست">
+    <input type="text" class="form-control text-center" name="title" placeholder="موضوغ پست" required>
   </div>
     <div class="form-group">
-    <input type="text" class="form-control text-center" name="author" placeholder="نویسنده">
+    <input type="text" class="form-control text-center" name="author" placeholder="نویسنده" required>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control text-center" name="blogimage" placeholder="آدرس عکس">
+    <input type="text" class="form-control text-center" name="blogimage" placeholder="آدرس عکس" required>
   </div>
     <div class="form-group">
-    <textarea class="form-control text-center" rows="5"  name="blogbody" placeholder="متن پست"></textarea>
+    <textarea class="form-control text-center" rows="5"  name="blogbody" placeholder="متن پست" required></textarea>
   </div>
   <button type="submit" class="btn mine-bg-primary text-light px-5 my-2">ثبت</button>
 </form>

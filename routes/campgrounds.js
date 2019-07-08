@@ -128,6 +128,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
+  req.flash("error", "لطفا ابتدا وارد شوید");
   res.redirect("/login");
 }
 

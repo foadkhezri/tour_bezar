@@ -22,7 +22,7 @@ router.get("/login", function(req, res) {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/campgrounds",
     failureRedirect: "/login"
   }),
   function(req, res) {}
@@ -46,6 +46,10 @@ router.post("/signup", function(req, res) {
         return res.render("register", { usernameTakenError: true });
       }
       passport.authenticate("local")(req, res, function() {
+        req.flash(
+          "success",
+          req.body.username + " عزیز اکانت شما با موفقیت ساخته شد "
+        );
         res.redirect("/campgrounds");
       });
     });
@@ -58,7 +62,8 @@ router.post("/signup", function(req, res) {
 
 router.get("/logout", function(req, res) {
   req.logOut();
-  res.redirect("/");
+  req.flash("success", "با موفقیت خارج شدید");
+  res.redirect("/login");
 });
 
 function isLoggedIn(req, res, next) {

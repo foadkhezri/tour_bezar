@@ -11,3 +11,17 @@ $("ul.navbar-nav a")
   })
   .parent()
   .addClass("active");
+
+// input validation
+
+var inputs, index;
+
+inputs = document.getElementsByTagName("input");
+for (index = 0; index < inputs.length; ++index) {
+  inputs[index].oninvalid = function() {
+    this.setCustomValidity("فیلد را کامل کنید");
+  };
+  inputs[index].oninput = function() {
+    this.setCustomValidity("");
+  };
+}
