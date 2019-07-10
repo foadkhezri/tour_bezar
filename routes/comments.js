@@ -32,7 +32,10 @@ router.get("/campgrounds/:id/comments/:comment_id/edit", function(req, res) {
       } else {
         console.log(foundComment.author);
         console.log(req.user._id);
-        if (foundComment.author === req.user.username) {
+        if (
+          foundComment.author === req.user.username ||
+          req.user.username === "admin"
+        ) {
           res.render("editcomment", {
             tour_id: req.params.id,
             comment: foundComment

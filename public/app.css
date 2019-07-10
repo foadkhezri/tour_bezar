@@ -89,6 +89,10 @@ body {
   height: 25vh;
 }
 
+.blog-container {
+  min-height: 16vh;
+}
+
 #blog-card-text {
   font-size: 1rem;
 }
@@ -123,6 +127,8 @@ header {
   height: 100%;
 }
 
+/* tours */
+
 .tour {
   height: fit-content;
   transition: transform 0.2s ease-in;
@@ -133,6 +139,10 @@ header {
 }
 figure img {
   max-height: 60vh;
+}
+
+.tour-container {
+  min-height: 27vh;
 }
 
 hr {
@@ -202,9 +212,8 @@ hr {
 
 /* dashboard */
 
-.account-manager-flex {
-  max-width: 650px;
-  margin: auto;
+.user-container {
+  min-height: 75vh;
 }
 
 @media only screen and (max-width: 768px) {

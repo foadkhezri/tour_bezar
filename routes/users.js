@@ -45,7 +45,7 @@ router.put("/users/:id/", isLoggedIn, function(req, res) {
   User.findByIdAndUpdate(
     req.user._id,
     {
-      username: req.body.newusername,
+      username: req.user.username,
       email: req.body.newemail,
       password: req.body.newpassword
     },

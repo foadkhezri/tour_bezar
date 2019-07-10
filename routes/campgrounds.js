@@ -50,7 +50,10 @@ router.get("/campgrounds/:id", function(req, res) {
         res.redirect("tours");
       } else {
         if (req.isAuthenticated()) {
-          if (foundTour.author.id.equals(req.user._id)) {
+          if (
+            foundTour.author.id.equals(req.user._id) ||
+            req.user.username === "admin"
+          ) {
             res.render("show", { tour: foundTour, authorized: true });
           } else {
             res.render("show", { tour: foundTour, authorized: false });
@@ -69,7 +72,10 @@ router.get("/campgrounds/:id/edit", function(req, res) {
       if (err) {
         res.render("tours");
       } else {
-        if (foundTour.author.id.equals(req.user._id)) {
+        if (
+          foundTour.author.id.equals(req.user._id) ||
+          req.user.username === "admin"
+        ) {
           res.render("edittour", { tour: foundTour });
         } else {
           res.render("forbidden");
