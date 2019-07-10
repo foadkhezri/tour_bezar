@@ -97,7 +97,7 @@ router.put("/campgrounds/:id", function(req, res) {
       },
       function(err, updatedTour) {
         if (err) {
-          res.redirect("/campgrounds");
+          res.render("error");
         } else {
           res.redirect("/campgrounds/" + req.params.id);
         }

@@ -18,7 +18,7 @@
           <%if (authorized === true) {%>
           <a href="/campgrounds/<%=tour._id%>/edit" class="btn btn-sm btn-warning px-4 py-2 my-3">ویرایش</a>
           <% } %>
-          <p class="small-text"><em>ثبت شده توسط <span class="mine-text-primary ml-1"><%=tour.author.username%></span></em></p>
+          <p class="small-text"><em>ثبت شده توسط <a href="/users/<%=tour.author.id%>" class="mine-text-primary ml-1"><%=tour.author.username%></a></em></p>
         </div>
       </div>
     </div>

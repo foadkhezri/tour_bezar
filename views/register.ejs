@@ -6,6 +6,14 @@
 <h4 class="h-4 my-5 mine-text-secondary">برای ساخت اکانت جدید ابتدا از اکانت فعلی خارج شوید</h4>
 </div>
 <% } else{ %>
+<%if (successMessage !== "undefined") { %>
+<div class="alert alert-success" role="alert">
+  <%=successMessage%>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% } %>
 <%if (adminError === true) {%>
 <div class="alert alert-danger" role="alert">
   شما نمی توانید از نام کاربری admin  استفاده کنید.
@@ -28,6 +36,9 @@
 <form action="/signup" method="POST">
   <div class="form-group">
     <input type="text" class="form-control text-center" name="username" placeholder="نام کاربری" required>
+  </div>
+    <div class="form-group">
+    <input type="email" class="form-control text-center" name="email" placeholder="ایمیل" required>
   </div>
     <div class="form-group">
     <input type="password" class="form-control text-center" name="password" placeholder="گذرواژه" required>

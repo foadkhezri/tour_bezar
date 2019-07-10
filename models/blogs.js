@@ -7,5 +7,5 @@ let blogSchema = new mongoose.Schema({
   author: String,
   created: { type: Date, default: Date.now }
 });
-
+blogSchema.index({ "$**": "text" });
 module.exports = mongoose.model("Blog", blogSchema);

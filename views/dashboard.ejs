@@ -1,3 +1,37 @@
-<h1>hello from dashbord</h1>
-
-<a href="/logout">logout</a>
+<% include partials/header1 %>
+<title>داشبورد</title>
+<% include partials/header2 %>
+<%if (successMessage !== "undefined") { %>
+<div class="alert alert-success" role="alert">
+  <%=successMessage%>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% } %>
+<div class="user-container container my-5 text-center">
+<h1 class="display-5">مدیریت حساب کاربری</h1>
+<div class="container mt-5">
+  <a href="/users/<%=user._id%>/edit" class="btn btn-warning my-2">ویرایش حساب کاربری</a>
+  <div class="row mt-5">
+    <div class="col-lg-12">
+      <h5 class="mine-text-secondary">آخرین تور های ثبت شده توسط شما</h5>
+    </div>
+  </div>
+  <div class="row my-5">
+    <% campgrounds.forEach(function(camp){%>
+    <div class="tour col-md-4 col-sm-6 mb-3 d-block text-center">
+      <figure class="figure shadow rounded mine-bg-secondary">
+        <img src="<%=camp.image %>" class="figure-img img-fluid rounded" />
+        <figcaption class="figure-caption text-light">
+          <%= camp.name%>
+        </figcaption>
+        <a href="/campgrounds/<%=camp._id%>/edit" class="btn btn-sm btn-warning px-4 py-2 my-3">ویرایش</a>
+        >
+      </figure>
+    </div>
+    <% }); %>
+  </div>
+  <% include partials/footer %>
+</div>
+</div>

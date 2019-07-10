@@ -4,10 +4,14 @@
 
 <header class="jumbotron mine-bg-secondary text-light">
 <div class="jumbotron-content">
-    <h1>بلاگ</h1>
+    <h1 id="testclick">بلاگ</h1>
         <p>مشاهده آخرین پست های منتشر شده</p>
         <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2 search my-3" type="search" placeholder="جستجوی پست ها            &#xF002" aria-label="Search">
+      <input
+        class="form-control mr-sm-2 search my-3 blog-input" 
+        type="search"
+        placeholder="جستجوی پست ها"
+      />
     </form>
         <hr>
            <%if (currentUser !== undefined) {%>   

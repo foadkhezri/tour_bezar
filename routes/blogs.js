@@ -91,6 +91,17 @@ router.delete("/blog/:id", function(req, res) {
     }
   });
 });
+
+router.get("/blog/search/:id", function(req, res) {
+  Blog.find({ $text: { $search: req.params.id } }, function(err, foundBlogs) {
+    if (err) {
+      console.log("error occured");
+    } else {
+      res.render("blog", { blogs: foundBlogs, searchInput: req.params.id });
+    }
+  });
+});
+
 function adminIsLoggedIn(req, res, next) {
   if (req.isAuthenticated() && req.user.username == "admin") {
     return next();

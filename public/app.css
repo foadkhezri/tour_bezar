@@ -200,6 +200,13 @@ hr {
   margin: 1rem auto auto auto;
 }
 
+/* dashboard */
+
+.account-manager-flex {
+  max-width: 650px;
+  margin: auto;
+}
+
 @media only screen and (max-width: 768px) {
   .header-text {
     font-size: 3rem;

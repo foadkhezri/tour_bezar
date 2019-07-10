@@ -2,6 +2,7 @@ let express = require("express");
 let router = express.Router();
 let passport = require("passport");
 let User = require("../models/user");
+let Tour = require("../models/tours");
 
 router.get("/", function(req, res) {
   res.render("index");
@@ -40,13 +41,17 @@ router.get("/signup", function(req, res) {
 });
 router.post("/signup", function(req, res) {
   if (req.body.username !== "admin") {
-    let newUser = new User({ username: req.body.username });
+    let newUser = new User({
+      username: req.body.username,
+      email: req.body.email
+    });
     User.register(newUser, req.body.password, function(err, user) {
       if (err) {
         console.log(err.message);
         return res.render("register", { usernameTakenError: true });
       }
       passport.authenticate("local")(req, res, function() {
+        console.log(user.email);
         req.flash(
           "success",
           req.body.username + " عزیز اکانت شما با موفقیت ساخته شد "
@@ -67,16 +72,36 @@ router.get("/logout", function(req, res) {
   res.redirect("/login");
 });
 
+// dashboard
+router.get("/dashboard", isLoggedIn, function(req, res) {
+  User.findById(req.user._id, function(err, foundUser) {
+    if (err) {
+      console.log("user not found");
+    } else {
+      Tour.find(
+        { author: { id: foundUser._id, username: foundUser.username } },
+        function(err, foundTours) {
+          if (err) {
+            console.log(
+              "error occured in founding tours for the spicific user"
+            );
+          } else {
+            res.render("dashboard", {
+              campgrounds: foundTours,
+              user: foundUser
+            });
+          }
+        }
+      );
+    }
+  });
+});
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
   res.redirect("/login");
 }
-
-// dashboard
-router.get("/dashboard", isLoggedIn, function(req, res) {
-  res.render("dashboard");
-});
 
 module.exports = router;
