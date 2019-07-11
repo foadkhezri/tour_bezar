@@ -1,4 +1,6 @@
 var url = window.location;
+let searchInput = document.querySelector(".search-input");
+var inputs, index;
 if (url == "http://localhost:3000/") {
   $(".navbar").addClass("fixed-top bg-transparent");
 } else {
@@ -14,8 +16,6 @@ $("ul.navbar-nav a")
 
 // input validation
 
-var inputs, index;
-
 inputs = document.getElementsByTagName("input");
 for (index = 0; index < inputs.length; ++index) {
   inputs[index].oninvalid = function() {
@@ -27,20 +27,9 @@ for (index = 0; index < inputs.length; ++index) {
 }
 // search logic
 
-let searchInput = document.querySelector(".search-input");
 searchInput.addEventListener("keypress", function(event) {
   if (event.keyCode === 13) {
     event.preventDefault();
     window.location.replace("/campgrounds/search/" + searchInput.value);
   }
 });
-
-// alerts
-
-window.setTimeout(function() {
-  $(".alert")
-    .fadeTo(500, 0)
-    .slideUp(500, function() {
-      $(this).remove();
-    });
-}, 4000);

@@ -1,6 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let Tour = require("../models/tours");
+let Comment = require("../models/comments");
 let User = require("../models/user");
 
 router.get("/users/:id", isLoggedIn, function(req, res) {
@@ -66,6 +67,50 @@ router.delete("/users/:id", function(req, res) {
       if (err) {
         console.log("error in deleting user");
       } else {
+        Comment.find({ author: deletedUser.username }, function(
+          err,
+          foundComments
+        ) {
+          if (err) {
+            console.log("error in finding comments");
+          } else {
+            foundComments.forEach(function(foundComment) {
+              Comment.findByIdAndDelete(foundComment._id, function(
+                err,
+                deletedComment
+              ) {
+                if (err) {
+                  console.log("error in deleting comment");
+                } else {
+                  console.log("successfully deleted the comment");
+                }
+              });
+            });
+          }
+        });
+        Tour.find(
+          {
+            author: { id: deletedUser._id, username: deletedUser.username }
+          },
+          function(err, foundTours) {
+            if (err) {
+              console.log("error in finding tours");
+            } else {
+              foundTours.forEach(function(foundTour) {
+                Tour.findByIdAndDelete(foundTour._id, function(
+                  err,
+                  deletedTour
+                ) {
+                  if (err) {
+                    console.log("error in deleting tour");
+                  } else {
+                    console.log("successfully deleted the tour");
+                  }
+                });
+              });
+            }
+          }
+        );
         req.flash(
           "success",
           " حساب کاربری " + deletedUser.username + " با موفقیت حذف گردید "

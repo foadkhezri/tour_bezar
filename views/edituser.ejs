@@ -8,7 +8,7 @@
     <input type="email" class="form-control text-center" name="newemail" value="<%= user.email%>" required>
   </div>
   <div class="form-group">
-    <input type="password" class="form-control text-center" name="newpassword" value="<%= user.password%>" required>
+    <input type="password" class="form-control text-center" name="newpassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="باید حداقل شامل یک عدد، یک حرف بزرگ، یک حرف کوچک و طول بزرگتر یا برابر 8 کاراکتر باشد" value="<%= user.password%>" required>
   </div>
   <button type="submit" class="btn mine-bg-primary text-light px-5 my-2">ثبت</button>
 </form>

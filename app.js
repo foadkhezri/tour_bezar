@@ -14,6 +14,7 @@ const express = require("express"),
   authRoutes = require("./routes/auth"),
   userRoutes = require("./routes/users"),
   blogRoutes = require("./routes/blogs"),
+  contactRoutes = require("./routes/contact"),
   notFoundRoute = require("./routes/404");
 
 // ===========================================================
@@ -61,6 +62,7 @@ app.use(commentRoutes);
 app.use(authRoutes);
 app.use(userRoutes);
 app.use(blogRoutes);
+app.use(contactRoutes);
 app.use(campgroundRoutes);
 app.use(notFoundRoute);
 

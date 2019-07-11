@@ -41,7 +41,7 @@
     <input type="email" class="form-control text-center" name="email" placeholder="ایمیل" required>
   </div>
     <div class="form-group">
-    <input type="password" class="form-control text-center" name="password" placeholder="گذرواژه" required>
+    <input type="password" class="form-control text-center" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="باید حداقل شامل یک عدد، یک حرف بزرگ، یک حرف کوچک و طول بزرگتر یا برابر 8 کاراکتر باشد" placeholder="گذرواژه" required>
   </div>
   <button class="btn mine-bg-primary text-light px-5 my-2">ثبت</button>
 </form>
