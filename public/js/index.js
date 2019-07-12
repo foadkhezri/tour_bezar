@@ -1,7 +1,7 @@
 var url = window.location;
 let searchInput = document.querySelector(".search-input");
 var inputs, index;
-if (url == "tourbezar.herokuapp.com/") {
+if (url == "http://tourbezar.herokuapp.com/") {
   $(".navbar").addClass("fixed-top bg-transparent");
 } else {
   $(".navbar").addClass("sticky-top");
