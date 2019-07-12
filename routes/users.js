@@ -4,6 +4,17 @@ let Tour = require("../models/tours");
 let Comment = require("../models/comments");
 let User = require("../models/user");
 
+router.get("/users", adminIsLoggedIn, function(req, res) {
+  User.find({}, function(err, foundUsers) {
+    if (err) {
+      res.render("error");
+      console.log("no users found");
+    } else {
+      res.render("userslist", { users: foundUsers });
+    }
+  });
+});
+
 router.get("/users/:id", isLoggedIn, function(req, res) {
   User.findById(req.params.id, function(err, foundUser) {
     if (err) {
@@ -63,7 +74,7 @@ router.put("/users/:id/", isLoggedIn, function(req, res) {
 
 router.delete("/users/:id", function(req, res) {
   if (req.isAuthenticated()) {
-    User.findByIdAndRemove(req.user._id, function(err, deletedUser) {
+    User.findByIdAndRemove(req.params.id, function(err, deletedUser) {
       if (err) {
         console.log("error in deleting user");
       } else {
@@ -111,6 +122,13 @@ router.delete("/users/:id", function(req, res) {
             }
           }
         );
+        if (req.user.username === "administrator") {
+          req.flash(
+            "success",
+            " حساب کاربری " + deletedUser.username + " با موفقیت حذف گردید "
+          );
+          return res.redirect("/users");
+        }
         req.flash(
           "success",
           " حساب کاربری " + deletedUser.username + " با موفقیت حذف گردید "
@@ -129,6 +147,18 @@ function isLoggedIn(req, res, next) {
   }
   req.flash("error", "لطفا ابتدا وارد شوید");
   res.redirect("/login");
+}
+
+function adminIsLoggedIn(req, res, next) {
+  if (req.isAuthenticated() && req.user.username == "administrator") {
+    return next();
+  } else {
+    if (req.isAuthenticated() && req.user.username !== "administrator") {
+      res.render("forbidden");
+    } else {
+      res.redirect("/login");
+    }
+  }
 }
 
 module.exports = router;

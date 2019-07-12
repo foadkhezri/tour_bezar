@@ -1,0 +1,22 @@
+<% include partials/header1 %>
+<title>کاربران سایت</title>
+<% include partials/header2 %>
+<%if (successMessage !== "undefined") { %>
+<div class="alert alert-success" role="alert">
+  <%=successMessage%>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% } %>
+<div class="user-container container my-5 text-center">
+  <% users.forEach(function(user){%>
+  <div class="d-flex justify-content-between align-items-center px-2 my-2 border">
+  <h6><%=user.username%></h6>
+<form action="/users/<%=user._id%>?_method=DELETE" method="POST">
+  <button type="submit" class="btn btn-danger text-light px-5 my-2">حذف حساب کاربری</button>
+</form>
+  </div>
+  <% }); %>
+</div>
+  <% include partials/footer %>
