@@ -3,6 +3,7 @@ let mongoose = require("mongoose");
 let tourSchema = new mongoose.Schema({
   name: String,
   image: String,
+  price: Number,
   description: String,
   author: {
     id: {

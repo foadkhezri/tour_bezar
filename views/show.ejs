@@ -1,3 +1,4 @@
+
 <% include partials/header1 %>
 <title><%=tour.name%></title>
 <% include partials/header2 %>
@@ -10,15 +11,27 @@
       <div class="card col-md-8 p-0">
         <img src="<%=tour.image%>" class="card-img-top" alt="tour image" />
         <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <h5 class="card-title"><%=tour.name%></h5>
-            <h5 class="card-title">9.99$</h5>
+          <div class="d-flex justify-content-between align-items-end">
+            <h3 class="card-title"><%=tour.name%></h3>
+            <h5 class="card-title"><%=tour.price.toLocaleString()%> تومان</h5>
           </div>
           <p class="card-text"><%= tour.description %></p>
           <%if (authorized === true) {%>
           <a href="/campgrounds/<%=tour._id%>/edit" class="btn btn-sm btn-warning px-4 py-2 my-3">ویرایش</a>
           <% } %>
-          <p class="small-text"><em>ثبت شده توسط <a href="/users/<%=tour.author.id%>" class="mine-text-primary ml-1"><%=tour.author.username%></a></em></p>
+                    <div class="d-flex justify-content-between align-items-center">
+            <p class="small-text">
+              <em
+                >ثبت شده توسط
+                <a
+                  href="/users/<%=tour.author.id%>"
+                  class="mine-text-primary ml-1"
+                  ><%=tour.author.username%></a
+                ></em
+              >
+            </p>
+            <p id="date-created"><%=tour.created.toLocaleDateString()%></p>
+          </div>
         </div>
       </div>
     </div>
@@ -60,7 +73,6 @@
           required
         ></textarea>
       </div>
-
       <button type="submit" class="btn mine-bg-primary text-light px-5 my-2">
         ثبت
       </button>

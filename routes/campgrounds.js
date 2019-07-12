@@ -17,6 +17,7 @@ router.get("/campgrounds", function(req, res) {
 router.post("/campgrounds", isLoggedIn, function(req, res) {
   let name = req.body.name;
   let image = req.body.image;
+  let price = req.body.price;
   let desc = req.body.description;
   let author = {
     id: req.user._id,
@@ -25,6 +26,7 @@ router.post("/campgrounds", isLoggedIn, function(req, res) {
   let newTour = {
     name: name,
     image: image,
+    price: price,
     description: desc,
     author: author
   };
@@ -95,6 +97,7 @@ router.put("/campgrounds/:id", function(req, res) {
       {
         name: req.body.name,
         image: req.body.tourimage,
+        price: req.body.tourprice,
         description: req.body.tourdesc,
         author: {
           id: req.user._id,
