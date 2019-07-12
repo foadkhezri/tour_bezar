@@ -103,10 +103,10 @@ router.get("/blog/search/:id", function(req, res) {
 });
 
 function adminIsLoggedIn(req, res, next) {
-  if (req.isAuthenticated() && req.user.username == "admin") {
+  if (req.isAuthenticated() && req.user.username == "administrator") {
     return next();
   } else {
-    if (req.isAuthenticated() && req.user.username !== "admin") {
+    if (req.isAuthenticated() && req.user.username !== "administrator") {
       res.render("forbidden");
     } else {
       res.redirect("/login");

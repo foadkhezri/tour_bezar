@@ -52,7 +52,7 @@ router.get("/campgrounds/:id", function(req, res) {
         if (req.isAuthenticated()) {
           if (
             foundTour.author.id.equals(req.user._id) ||
-            req.user.username === "admin"
+            req.user.username === "administrator"
           ) {
             res.render("show", { tour: foundTour, authorized: true });
           } else {
@@ -74,7 +74,7 @@ router.get("/campgrounds/:id/edit", function(req, res) {
       } else {
         if (
           foundTour.author.id.equals(req.user._id) ||
-          req.user.username === "admin"
+          req.user.username === "administrator"
         ) {
           res.render("edittour", { tour: foundTour });
         } else {
