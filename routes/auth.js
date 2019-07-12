@@ -40,28 +40,28 @@ router.get("/signup", function(req, res) {
   }
 });
 router.post("/signup", function(req, res) {
-  if (req.body.username !== "admin") {
-    let newUser = new User({
-      username: req.body.username,
-      email: req.body.email
+  // if (req.body.username !== "admin") {
+  let newUser = new User({
+    username: req.body.username,
+    email: req.body.email
+  });
+  User.register(newUser, req.body.password, function(err, user) {
+    if (err) {
+      console.log(err.message);
+      return res.render("register", { usernameTakenError: true });
+    }
+    passport.authenticate("local")(req, res, function() {
+      console.log(user.email);
+      req.flash(
+        "success",
+        req.body.username + " عزیز اکانت شما با موفقیت ساخته شد "
+      );
+      res.redirect("/campgrounds");
     });
-    User.register(newUser, req.body.password, function(err, user) {
-      if (err) {
-        console.log(err.message);
-        return res.render("register", { usernameTakenError: true });
-      }
-      passport.authenticate("local")(req, res, function() {
-        console.log(user.email);
-        req.flash(
-          "success",
-          req.body.username + " عزیز اکانت شما با موفقیت ساخته شد "
-        );
-        res.redirect("/campgrounds");
-      });
-    });
-  } else {
-    res.render("register", { adminError: true });
-  }
+  });
+  // } else {
+  //   res.render("register", { adminError: true });
+  // }
 });
 
 // logout

@@ -19,7 +19,10 @@ const express = require("express"),
 
 // ===========================================================
 // mongoose configuration
-mongoose.connect("mongodb://localhost:27017/tour_bezar", {
+// mongoose.connect("mongodb://localhost:27017/tour_bezar", {
+//   useNewUrlParser: true
+// });
+mongoose.connect("mongodb://colt:rusty@ds055525.mongolab.com:55525/yelpcamp", {
   useNewUrlParser: true
 });
 mongoose.set("useNewUrlParser", true);
