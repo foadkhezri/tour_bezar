@@ -15,7 +15,8 @@ const express = require("express"),
   userRoutes = require("./routes/users"),
   blogRoutes = require("./routes/blogs"),
   contactRoutes = require("./routes/contact"),
-  notFoundRoute = require("./routes/404");
+  notFoundRoute = require("./routes/404"),
+  port = process.env.PORT || 8080;
 
 // ===========================================================
 // mongoose configuration
@@ -72,6 +73,6 @@ app.use(notFoundRoute);
 // =============================================================
 // configuring the server
 
-app.listen("3000", function() {
+app.listen(port, function() {
   console.log("tour bezar server has started...");
 });
